@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신정연</title>
+    <style>
+        body {
+
+            background: linear-gradient(to right, lightpink, lightblue);
+        }
+
+        .container {
+            background-color: whitesmoke;
+            max-width: 800px;
+            height: 1000px;
+            margin: 10px auto;
+            border: 1px solid #fff;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            background-image: url(../imges/rubber_duck_profile.jpg) no-repeat;
+            border: 5px solid lightpink;
+            background-size: contain;
+            background-position: center;
+            border-radius: 50%;
+            margin: 20px;
+
+        }
+
+        .Skillls {
+            border: 1px solid #ddd;
+            width: 700px;
+            height: 100px;
+            box-shadow: 0 4px 12px rgba(255, 244, 41, 0.5);
+            padding: 12px;
+            margin: 10px;
+            background-color: #eee;
+        }
+
+        .L {
+            width: 5px;
+            height: 30px;
+            background: purple;
+            border-radius: 3px;
+        }
+
+        header {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+
+        p {
+            font-size: 15px;
+            align-items: center;
+            margin: 3px;
+        }
+
+        .flex {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        #End {
+            font-size: 18px;
+            margin: 3px;
+            align-items: center;
+
+
+        }
+
+        .pro1 {
+            background-color: #eee;
+            border: 1px solid #eee;
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 12px;
+            width: 330px;
+            height: 100px;
+            box-shadow: 0 4px 12px rgba(147, 188, 255, 0.5);
+
+        }
+
+        .pro {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 3px;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            align-items: center;
+            color: lightskyblue;
+        }
+
+        .kill {
+            border: 1px solid#eee;
+            margin: 0;
+            padding: 16px;
+            background: #eee;
+            box-shadow: 0 4px 12px rgba(242, 162, 162, 0.5);
+        }
+        li{
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+
+            <img src="../images/rubber_duck_profile.jpg">
+            <div>
+                <div class="flex">
+                    <h1>신정연</h1>
+                    <p id="End">/Back End Developer</p>
+                </div>
+                <a href="#">초보 웹 개발자- HTML, CSS, JS, SQL, JAVA 학습중</a>
+                <p>백엔드 개발자를 목표로 공부 중인 학생이다. </p>
+            </div>
+
+
+        </header>
+
+
+        <main>
+            <section>
+                <div>
+                    <div class="pro">
+                        <div class="L"></div>
+                        <h2>기술 스택 / 사용 가능 기술</h2>
+                    </div>
+                    <div class="Skillls">
+                        JavaScript
+                        <ul>
+                            <li>기본 문법과 함수, 화살표 함수, 콜백을 익혔고, DOM 조작과 이벤트 처리(addEventListener)를 사용해 버튼 클릭 시 이미지나 텍스트를 바꾸는 코드를 직접 작성할 수 있습니다.</li>
+                            <li>Promise, then, catch, async/await 개념을 공부했고, fetch로 강아지 사진 API, 명언 API, iTunes 음악 검색 API를 호출해 JSON 응답을 파싱한 뒤 img 태그나 ul/li 목록에 출력할 수 있습니다.  </li>
+                        </ul>
+                    </div>
+                    <div class="Skillls">
+                        CSS
+                        <ul>
+                            <li>lexbox·정렬·레이아웃 구성까지 포함한 다양한 CSS 배치 기법을 사용해 반응형 구조를 구현할 수 있습니다.</li>
+                            <li>색상, 폰트, 박스모델(box-sizing·padding·margin) 등 디자인 요소를 활용해 UI 스타일을 세밀하게 조정할 수 있습니다.</li>
+                            <li>클래스·아이디를 활용한 구조적 스타일링과 재사용 가능한 CSS 패턴을 작성할 수 있습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="pro">
+                    <div class="L"></div>
+                    <h2>프로젝트</h2>
+                </div>
+                <div class="contain">
+                    <div class="contain"></div>
+                </div>
+
+                <div class="pro">
+                    <div class="pro1">
+                        <strong>포트폴리오 페이지 만들기</strong>
+                        <p></p>
+
+                    </div>
+                    <div class="pro1">
+                        <strong>간단한 소개 랜딩 페이지</strong>
+                        <p></p>
+                    </div>
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+        <footer>
+            <div class="pro">
+                <div class="L">
+                </div>
+                <h2>연락처</h2>
+            </div>
+            <div class="kill">
+                <p>이메일: <a href="#">yeon2416@naver.com</a></p>
+                <p>GitHub: <a href="#">GitGit.com</a></p>
+                <p>포트폴리오 시연 영상: <a href="#">클릭</a> </p>
+            </div>
+
+        </footer>
+    </div>
+</body>
+
+</html>

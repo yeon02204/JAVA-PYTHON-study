@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Todo List</h2>
+    
+        <div class="todo-input-area">
+            <input id="todo-input" type="text" placeholder="할 일을 입력하세요" />
+            <button id="add-btn" type="button">추가</button>
+        </div>
+    
+        <ul id="todo-list"></ul>
+        <p id="empty-text" class="empty-text">아직 등록된 할 일이 없습니다.</p>
+    </div>
+    <script>
+        // 할일 입력창
+        const todoInput = document.querySelector("#todo-input");
+        // 추가 버튼
+        const todoBtn = document.querySelector("#add-btn");
+        // ul리스트
+        const todoList = document.querySelector("#todo-list");
+        // 비어있을때 문구
+        const emptyText = document.querySelector("#empty-text");
+
+        // --------------------------
+        // Todo 랜더링하기
+        // --------------------------
+        function renderTodoList(todos){
+            todoList.innerHTML ="";
+            if(!todos || todos.length === 0){
+                // emptyText의 display을 block으로 만들기
+                emptyText.style.display = "block";
+            }else{
+                // emptyText의 display을 none으로 만들기
+                emptyText.style.display = "none";
+            }
+
+            // 배열에 모든 객체를 위해서
+            todos.forEach(todo => {
+                // li를 생성하고 todo-item이라는 class값을 부여
+                const li = document.createElement("li");
+                li.className ="todo-item";
+
+                // 왼쪽: 체크박스와 텍스트
+                const left = document.createElement("div");
+                left.className = "todo-left";
+
+                //checkbox생성
+                //<input type="checkbox">
+                const checkbox = document.createElement("input");
+                checkbox.type="checkbox"
+                checkbox.checked = todo.done;//기본값 false
+
+                //span태그 생성하고 todo-text라는 클래스값을 부여
+                const span = document.createElement("span");
+                span.className = "todo-text";
+                span.textContent = todo.title;
+
+
+                // done값이 true면 class속성에 done 이라는 값을 추가
+                if(todo.done){
+                    span.classList.add("done");
+                }
+
+                // 체크박스에 변경이 생기면ㅇ span태그에 done값을 토글한다
+                // toggle : 있으면 없애고 없으면 만든다.
+                checkbox.addEventListener("change",async()=>{
+                    span.classList.toggle("done");
+
+                    // 상탸 변경 후 서버에 업데이트 요청
+                    const updatetodo = {
+                    id : todo.id,
+                    title : todo.title,
+                    done : checkbox.checked
+                };
+
+                    await updatedTodo(updatetodo);
+                });
+
+                // span 태그를 더블 클릭 했을때 수정모드로 바뀜
+                span.addEventListener("dblclick", () =>{
+                    const originslText = span.textContent;
+
+                    // span을 임시 input요소로 교체
+                    const input = document.createElement("input");
+                    input.type ="text";
+                    input.value = originslText;
+                    input.classList.add("todo-input-edit");
+
+                    // span을 input 테그로 교체
+                    span.parentNode.replaceChild(input,span);
+                    input.focus();
+
+                    const saveChanges = async ()=>{
+                        const newText = input.value.trim();
+                        const originslText = span.textContent; 
+
+                        // 텍스트가 비어있지 않고, 기존과 다를 경우만 서버에 요청
+                    if(newText !== "" || newText !== originslText){
+                        const updatetodo ={
+                            id : todo.id,
+                            title : newText,
+                            done : todo.done
+                        }
+                        // console.log("요청이감");
+                        await updatedTodo(updatetodo);
+                        return;
+                       
+                    }
+                       // 입력필드를 다시 apan으로 교체
+                       input.parentNode.replaceChild(span,input); 
+                       
+                    }
+
+                    // input에서 엔터키를 눌렀을때 saveChanges() 실행하기
+                    let isProcessing = false;
+
+                    input.addEventListener("keydown", (e)=>{
+                    if(e.key === "Enter"){
+                        saveChanges();
+                        }
+                    })
+
+                    // 포커스를 잃었을때
+                    input.addEventListener("blur",saveChanges);
+
+                })
+
+                
+
+
+                // left -> div
+                //<div>에 체크박스랑 span을 자식 요소로 넣겠다
+                left.appendChild(checkbox);
+                left.appendChild(span);
+
+                // 삭제 버튼
+                const delBtn = document.createElement("button");
+                delBtn.className = "delete-btn";
+                delBtn.textContent="삭제";
+
+                // 삭제 버튼을 눌렀을떄 서버로 삭제 요청을 보낸다
+                delBtn.addEventListener("click",()=> deleteTodo(todo.id));
+
+                li.appendChild(left);
+                li.appendChild(delBtn);
+
+                todoList.appendChild(li);
+            
+            });
+        }
+
+
+        // --------------------------
+        // Todo 추가하기
+        // --------------------------
+        async function addTodo() {
+            const text = todoInput.value.trim();
+            // text의 내용이 비어있으면 내용을 입력하세요 경고 띄우기
+            if(text === ""){
+                return alert("내용을 입력하세요.");
+            }
+
+            // fetch를 이용해서 스프링 부트에 요청하기
+        const response = await fetch("http://localhost:8080/todo/createTodo",{
+            method :"POST",
+            headers : {"Content-Type" : "application/json"},
+            body: JSON.stringify({"title" : text })
+
+        })
+
+         // 얻어온 결과를 콘솔에 찍어보기
+         const result = await response.json();
+            console.log(result.data);
+            if(result.data){
+                renderTodoList(result.data);
+            }
+
+        todoInput.value= "";
+        todoInput.focus();
+
+        // JSON.stringify(): js 객체를 json문자열로 변환해준다
+        // {"title" : text } - > {\"title\" : \"hello\" } 
+
+    }
+    
+
+
+        let isProcessing = false;
+
+        todoInput.addEventListener("keydown", async e =>{
+        if(e.key === "Enter"){
+        if (isProcessing) return; // 이미 실행 중이면 무시
+        isProcessing = true;
+
+        await addTodo();
+
+        setTimeout(() => isProcessing = false, 100); 
+        }
+        })
+
+        todoBtn.addEventListener("click",addTodo);
+
+        // --------------------------
+        // Todo 조회하는 loadTodos()함수 작성하기
+        // --------------------------
+
+        // 모든 할일을 조회해서 얻는 내용을 renderTodoList()에 전달하기
+        async function loadTodos(){
+            const response = await fetch("http://localhost:8080/todo")
+            const result = await response.json();
+            if(result.data){
+                renderTodoList(result.data);
+            }
+        }
+        // window객체
+        // 웹브라우저 자체를 의미한다. 전력 객체 역할도 한다.
+        // DOMContentLoaded : html문서의 파싱이 완료되어 DOM트리가 완성 되었을때 발생하는 이벤트
+        window.addEventListener("DOMContentLoaded",loadTodos);
+
+        // --------------------------
+        // TODO를 식제하는 요청
+        // --------------------------
+
+        async function deleteTodo(id){
+            const deletetodo = await fetch(`http://localhost:8080/todo/${id}`,{method: "DELETE"})
+            const result = await deletetodo.json();
+
+            console.log(result);
+
+            if(result.data){
+        renderTodoList(result.data);
+    }
+        }
+
+
+        // --------------------------
+        // TODO를 수정하는 요청
+        // --------------------------
+
+        
+            //서버로 수정 요청 보내기
+
+            // 응답 받아서 전체 목록 다시 렌더링 하기
+
+            async function updatedTodo(todoItem){
+                console.log("요청가니");
+            const response = await fetch("http://localhost:8080/todo",{
+                method: "PUT",
+                headers : {"Content-Type" : "application/json"},
+                body: JSON.stringify(todoItem)
+
+            });
+            const result = await response.json();
+
+            console.log(result);
+
+            if(result.data){
+            renderTodoList(result.data);
+            }
+        }
+        
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

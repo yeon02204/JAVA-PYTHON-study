@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 폰트 -->
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet">
+
+  <!-- 스타일 -->
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="wrap">
+    <h3>코리아 IT아카데미 학원</h3>
+
+    <!--  위 4칸 모드 박스 줄 -->
+    <div class="mode-wrap">
+      <div class="mode-item" data-mode="staff">
+        <img src="img/bg_staff.png" class="icon" alt="행정모드">
+        행정모드
+      </div>
+
+      <div class="mode-item" data-mode="teacher">
+        <img src="img/bg_teacher.png" class="icon" alt="강사모드">
+        강사모드
+      </div>
+
+      <div class="mode-item" data-mode="student" id="studentMode">
+        <img src="img/bg_student.png" class="icon" alt="훈련생모드">
+        훈련생모드
+      </div>
+
+      <div class="mode-item" data-mode="eval">
+        <img src="img/bg_seval.png" class="icon" alt="이수자평가">
+        이수자평가
+      </div>
+    </div>
+
+    <!-- 아래 로그인 박스 -->
+    <div id="studentBox" class="panel hidden">
+      <div class="idpw">
+        <input type="text" placeholder="아이디를 입력하세요">
+        <input type="password" placeholder="비밀번호를 입력하세요">
+      </div>
+      <div class="button">
+        <button class="join">회원가입</button>
+        <button class="find">아이디/비밀번호 찾기</button>
+        <button class="login">로그인</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 회원가입 모달 -->
+  <div id="overlay" class="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+      <header id="signupTitle">회원가입</header>
+
+      
+      <div class="row">
+        <label>아이디</label>
+        <input id="id" type="id" placeholder="ID" />
+      </div>
+      <div class="row">
+        <label>비밀번호</label>
+        <input id="pw" type="password" placeholder="password" />
+      </div>
+      <div class="row">
+        <label>비밀번호 확인</label>
+        <input id="pw" type="password" placeholder="password" />
+      </div>
+      <div class="row">
+        <label>이메일</label>
+        <input id="email" type="email" placeholder="email" />
+      </div>
+
+      <div class="actions">
+        <button id="btnCancel">취소</button>
+        <button id="btnSubmit" class="primary">가입하기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>
