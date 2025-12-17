@@ -1,10 +1,48 @@
-## Java & Spring Boot 학습 기록
-## 📌 학습 내용
-- Java 기초 문법
-- 객체지향 개념
-- Spring Boot 기본 구조
-- DI / Controller / Service 실습
+# Java & Spring Boot 학습 기록
 
-## 📁 폴더 설명
-- 01_java_basics : 자바 기본 문법
-- 02_spring_basics : 스프링부트 기초
+Java 기초부터 Spring Boot 기본 구조까지 학습한 내용을 정리한 저장소입니다.  
+이론 학습과 함께 실습 위주의 코드로 구성되어 있으며,  
+백엔드 개발 역량 강화를 목표로 합니다.
+
+---
+
+## 📌 학습 내용
+
+- Java 기본 문법
+- 객체지향 프로그래밍(OOP) 개념
+- Spring Boot 기본 구조 이해
+- DI (Dependency Injection)
+- Controller / Service 계층 분리 실습
+
+---
+
+## 📂 폴더 구성
+
+### 01_java_basics
+- Java 기본 문법
+- 변수, 조건문, 반복문
+- 클래스와 객체
+- 상속, 다형성 등 객체지향 개념
+
+### 02_spring_basics
+- Spring Boot 프로젝트 기본 구조
+- Controller / Service 구조 이해
+- 간단한 요청 처리 실습
+- 계층 분리 설계 연습
+
+---
+
+## 🎯 학습 목적
+
+- Java 언어에 대한 기본기 확립
+- 객체지향 설계에 대한 이해
+- Spring Boot 기반 백엔드 구조 이해
+- 실무에서 사용하는 기본 아키텍처 흐름 파악
+
+---
+
+## ✏️ 참고 사항
+
+- 본 저장소는 학습 기록용으로 작성되었습니다.
+- 실습 및 복습 중심의 코드가 포함되어 있습니다.
+- 점진적으로 내용이 추가·정리될 예정입니다.
