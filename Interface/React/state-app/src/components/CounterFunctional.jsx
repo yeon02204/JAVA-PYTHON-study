@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function CounterFunctional(){
     // 1. 상태(state) 정의 : useState() 훅 사용하기
     // [현재 상태의 값을 담을 변수, 상태의 값읗 변경할 수 있는 함수] = useState(초기값)
