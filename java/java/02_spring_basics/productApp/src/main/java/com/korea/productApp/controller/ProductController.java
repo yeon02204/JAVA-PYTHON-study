@@ -21,7 +21,7 @@ import com.korea.productApp.service.ProductService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
 	

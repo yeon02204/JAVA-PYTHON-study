@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="demo/src/main/java"/>
+	<classpathentry kind="src" path="demo/src/test/java"/>
+	<classpathentry kind="src" path="di/src/main/java"/>
+	<classpathentry kind="src" path="di/src/test/java"/>
+	<classpathentry kind="src" path="exam/src"/>
+	<classpathentry kind="src" path="layer/src/main/java"/>
+	<classpathentry kind="src" path="layer/src/test/java"/>
+	<classpathentry kind="src" path="product/src/main/java"/>
+	<classpathentry kind="src" path="product/src/test/java"/>
+	<classpathentry kind="src" path="productApp/src/main/java"/>
+	<classpathentry kind="src" path="productApp/src/test/java"/>
+	<classpathentry kind="src" path="student/src/main/java"/>
+	<classpathentry kind="src" path="student/src/test/java"/>
+	<classpathentry kind="src" path="user/src/main/java"/>
+	<classpathentry kind="src" path="user/src/test/java"/>
+	<classpathentry kind="lib" path="demo/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="di/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="layer/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="product/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="productApp/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="student/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="user/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="demo/bin/main"/>
+</classpath>
